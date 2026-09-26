@@ -1,0 +1,19 @@
+resources:
+  jobs:
+    SDP_API_AUTOLOADER:
+      name: SDP-API-AUTOLOADER
+      tasks:
+        - task_key: API_INGEST
+          notebook_task:
+            notebook_path: /Workspace/Users/papungkorn1245@gmail.com/me/api by Me
+              eiei/lesson 3
+            source: WORKSPACE
+        - task_key: B_S_G
+          depends_on:
+            - task_key: API_INGEST
+          run_if: ALL_DONE
+          pipeline_task:
+            pipeline_id: eda770a9-0826-4af6-abdb-0e24b4c85667
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
