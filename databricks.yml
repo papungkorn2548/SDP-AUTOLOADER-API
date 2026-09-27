@@ -7,14 +7,14 @@ include:
 variables:
   catalog:
   root_path:
-    default: /Workspace/Users/papungkorn1245@gmail.com/.bundle/${bundle.name}/${bundle.target}
+    default: /Workspace/Users/<{YOUR-EMAIL}>/.bundle/${bundle.name}/${bundle.target}
 
 targets:
   dev:
     mode: development
     default: true
     workspace:
-      host: https://dbc-5ff5343c-d92d.cloud.databricks.com
+      host: <{YOUR-HOST}>
       root_path: ${var.root_path}
     variables:
       catalog: dev
@@ -29,7 +29,7 @@ targets:
   prod:
     mode: production
     workspace:
-      host: https://dbc-5ff5343c-d92d.cloud.databricks.com
+      host: <{YOUR-HOST}>
       root_path: ${var.root_path}
     variables:
       catalog: prod
