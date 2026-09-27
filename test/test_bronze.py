@@ -9,10 +9,13 @@ from pyspark.sql.window import Window
 
 @pytest.fixture(scope="session")
 def spark():
-    """Create a fresh Spark Connect session with a unique session_id."""
-    base_url = os.environ["SPARK_REMOTE"].split(";session_id=")[0]
-    url = f"{base_url};session_id={uuid.uuid4()}"
-    return SparkSession.builder.remote(url).getOrCreate()
+    """Create a local Spark session for testing."""
+    return (
+        SparkSession.builder
+        .master("local[1]")
+        .appName("unit-test")
+        .getOrCreate()
+    )
 
 
 # ── staging_weather.py ──────────────────────────────────────────────
