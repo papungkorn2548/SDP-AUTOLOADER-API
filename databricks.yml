@@ -7,20 +7,20 @@ include:
 variables:
   catalog:
   root_path:
-    default: /Workspace/Users/<your-email>/.bundle/${bundle.name}/${bundle.target}
+    default: /Workspace/Users/papungkorn1245@gmail.com/.bundle/${bundle.name}/${bundle.target}
 
 targets:
   dev:
     mode: development
     default: true
     workspace:
-      host: https://<your-host>.cloud.databricks.com
+      host: https://dbc-5ff5343c-d92d.cloud.databricks.com
       root_path: ${var.root_path}
     variables:
       catalog: dev
     resources:
       jobs:
-        transform_gold:
+        SDP_API_AUTOLOADER:
           environments:
             - environment_key: default
               spec:
@@ -29,21 +29,14 @@ targets:
   prod:
     mode: production
     workspace:
-      host: https://<your-host>.cloud.databricks.com
+      host: https://dbc-5ff5343c-d92d.cloud.databricks.com
       root_path: ${var.root_path}
-    artifacts:
-      default:
-        type: whl
-        build: python3 -m build
-        path: ./logic_packages/
     variables:
       catalog: prod
     resources:
       jobs:
-        transform_gold:
+        SDP_API_AUTOLOADER:
           environments:
             - environment_key: default
               spec:
                 environment_version: "4"
-                dependencies:
-                  - ./logic_packages/dist/*.whl
