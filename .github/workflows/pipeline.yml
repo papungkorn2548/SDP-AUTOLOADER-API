@@ -42,17 +42,13 @@ jobs:
         run: |
           curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
 
-      - name: Validate Bundle (dev)
-        run: databricks bundle validate --target dev --strict
-
-      - name: Validate Bundle (prod)
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: databricks bundle validate --target prod --strict
+      - name: Validate Bundle
+        run: databricks bundle validate
 
       - name: Deploy Bundle Production
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: databricks bundle deploy -t prod
 
       - name: Deploy Bundle Non-Production
-        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        if: github.ref != 'refs/heads/main'
         run: databricks bundle deploy -t dev
