@@ -1,4 +1,18 @@
 resources:
+  pipelines:
+    SDP_PIPELINE:
+      name: SDP-AUTOLOADER-Pipeline
+      libraries:
+        - file:
+            path: ../src/src/Bronze_setup.py
+        - file:
+            path: ../src/src/Bronze_api_ingest.py
+        - file:
+            path: ../src/src/staging_weather.py
+        - file:
+            path: ../src/src/silver.py
+        - file:
+            path: ../src/src/Gold.py
   jobs:
     SDP_API_AUTOLOADER:
       name: SDP-API-AUTOLOADER
@@ -12,7 +26,7 @@ resources:
             - task_key: API_INGEST
           run_if: ALL_DONE
           pipeline_task:
-            pipeline_id: eda770a9-0826-4af6-abdb-0e24b4c85667
+            pipeline_id: ${resources.pipelines.SDP_PIPELINE.id}
       queue:
         enabled: true
       performance_target: PERFORMANCE_OPTIMIZED

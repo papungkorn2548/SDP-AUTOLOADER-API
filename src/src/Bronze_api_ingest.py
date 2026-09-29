@@ -1,4 +1,3 @@
-# Databricks notebook source
 from pyspark import pipelines as dp
 from pyspark.sql.functions import *
 dp.create_streaming_table("session_21_firststep.default.api_ingest")
