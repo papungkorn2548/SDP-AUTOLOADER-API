@@ -5,7 +5,7 @@ resources:
       tasks:
         - task_key: API_INGEST
           notebook_task:
-            notebook_path: ../src/api_ingest
+            notebook_path: ../src/api_ingest.ipynb
             source: WORKSPACE
         - task_key: B_S_G
           depends_on:
