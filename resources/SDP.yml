@@ -2,6 +2,7 @@ resources:
   pipelines:
     SDP_PIPELINE:
       name: SDP-AUTOLOADER-Pipeline
+      serverless: true
       channel: CURRENT
       libraries:
         - file:
