@@ -4,6 +4,7 @@ resources:
       name: SDP-AUTOLOADER-Pipeline
       serverless: true
       channel: CURRENT
+      catalog: ${var.catalog}
       libraries:
         - file:
             path: ../src/src/Bronze_setup.py
