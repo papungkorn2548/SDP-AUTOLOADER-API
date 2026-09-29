@@ -195,6 +195,12 @@ The Gold notebook defines these aggregate views from `silver_check_sdp`:
 | `gold_yearly_df` | City and year | Days recorded, average/high/low temperature, precipitation, rainy days, and wind metrics. |
 | `gold_monthly_df` | City, year, and month | The yearly metrics plus temperature and precipitation ranks. |
 
-## 11. Author
+## 11. Known Limitations
+
+The pipeline runs normally in my workspace. Deploying to a different workspace
+may require granting the job identity access to the landing Volume and
+permission to run the Lakeflow pipeline.
+
+## 12. Author
 
 **GitHub:** [@papungkorn2548](https://github.com/papungkorn2548)
