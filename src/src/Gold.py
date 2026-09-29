@@ -62,4 +62,3 @@ def gold_monthly_df():
     .orderBy("city_name", "year", "month")
 )
     return gold_monthly_df
-

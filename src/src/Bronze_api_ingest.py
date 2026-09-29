@@ -13,4 +13,3 @@ def Bronze_api_ingest():
         .withColumn("_file_name",col("_metadata.file_name"))
         .withColumn("_load_dttm",current_timestamp())
     )
-
