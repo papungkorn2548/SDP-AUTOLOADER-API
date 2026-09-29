@@ -1,9 +1,5 @@
 # SDP-AUTOLOADER-API
 
-> **!!! I couldn't get the pipeline to run after deploying to a different**
-> **workspace because You will don't have the required permissions there. You must have I grant permission to you**
-> **I can't fix it either.**
-
 ## 1. Overview
 
 This project uses historical weather data from the Open-Meteo Archive API to
