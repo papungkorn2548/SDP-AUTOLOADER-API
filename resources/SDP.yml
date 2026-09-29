@@ -2,6 +2,7 @@ resources:
   pipelines:
     SDP_PIPELINE:
       name: SDP-AUTOLOADER-Pipeline
+      channel: CURRENT
       libraries:
         - file:
             path: ../src/src/Bronze_setup.py
