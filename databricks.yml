@@ -1,5 +1,5 @@
 bundle:
-  name: dabs_workshop
+  name: SDP-AUTOLOADER
 
 include:
   - resources/*.yml
