@@ -17,6 +17,17 @@ ingests them into the downstream weather pipeline.
 **Project focus:** API ingestion, checkpoint-based resumption, Auto Loader,
 weather-data validation, and daily/monthly/yearly analytics.
 
+### Data sources
+
+The repository does not contain a bundled data directory. It uses weather JSON
+files fetched from Open-Meteo and also defines a CSV Auto Loader flow. The
+pipeline tables and views serve these purposes:
+
+| Dataset | Row | Purpose |
+| --- | --- | --- |
+| `weather_data/weather_YYYY-MM-DD.json` | One JSON record per city for the requested date | Example daily API files used to demonstrate incremental loading for Bangkok, Tokyo, and London; `_checkpoint.json` tracks the last completed date. |
+| `daily_data.csv` | 395,754 data rows (excluding the header) in the supplied archive. | Sample input copied to the `fistproject2` Volume by `src/ddl.py`. # Auto Loader incrementally detects and ingests CSV files into `weather_api`, adding file-name and load-time metadata. The CSV is not included in the repository. |
+
 ## 2. Architecture
 
 **Job workflow**
@@ -55,17 +66,6 @@ The API notebook requests up to `days_per_run` days per run, ending no later
 than yesterday. It resumes from its checkpoint after successful dates. For each
 date, all three city requests must succeed before a JSON file is written and the
 checkpoint advances.
-
-### Data sources and tables
-
-The repository does not contain a bundled data directory. It uses weather JSON
-files fetched from Open-Meteo and also defines a CSV Auto Loader flow. The
-pipeline tables and views serve these purposes:
-
-| Dataset / table | Purpose |
-| --- | --- |
-| `weather_data/weather_YYYY-MM-DD.json` | Example daily API files used to demonstrate incremental loading for Bangkok, Tokyo, and London; `_checkpoint.json` tracks the last completed date. |
-| `daily_data.csv` | CSV input referenced by `src/ddl.py` and the separate CSV Auto Loader flow; the file itself is not included in this repository. |
 
 ## 3. Key Features
 
