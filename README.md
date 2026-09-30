@@ -1,5 +1,11 @@
 # SDP-AUTOLOADER-API
 
+**Project Summary**
+
+This project demonstrates how Databricks Auto Loader incrementally ingests
+weather data files. Historical observations are fetched from the Open-Meteo API,
+saved as JSON files, and processed through a Databricks pipeline.
+
 ## 1. Overview
 
 This project uses historical weather data from the Open-Meteo Archive API to
@@ -49,6 +55,17 @@ The API notebook requests up to `days_per_run` days per run, ending no later
 than yesterday. It resumes from its checkpoint after successful dates. For each
 date, all three city requests must succeed before a JSON file is written and the
 checkpoint advances.
+
+### Data sources and tables
+
+The repository does not contain a bundled data directory. It uses weather JSON
+files fetched from Open-Meteo and also defines a CSV Auto Loader flow. The
+pipeline tables and views serve these purposes:
+
+| Dataset / table | Purpose |
+| --- | --- |
+| `weather_data/weather_YYYY-MM-DD.json` | Example daily API files used to demonstrate incremental loading for Bangkok, Tokyo, and London; `_checkpoint.json` tracks the last completed date. |
+| `daily_data.csv` | CSV input referenced by `src/ddl.py` and the separate CSV Auto Loader flow; the file itself is not included in this repository. |
 
 ## 3. Key Features
 
